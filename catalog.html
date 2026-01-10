@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AbobaGames.com</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<header class="header_index">
+	<img src="images/logo.png">
+	<h2>GameNest</h2>
+   		<nav>
+   			<ul>
+            	<li><a href="index.html">Main Page</a></li>
+            	<li><a href="catalog.html">Catalog</a></li>
+            	<li><a href="about.html">About Us</a></li>
+            </ul>
+   		</nav>
+
+   		<select>
+   			<option>English</option>
+   			<option>Ukrainian</option>
+   		</select>
+</header>
+
+<main>
+
+<div class="catalog-title">
+	<h1 class="h1-catlog">GameNest Catalog</h1>
+</div>
+	<div id="cart-info" class="cart-info">Items in cart: 0</div>
+	<button id="clear-cart-btn">Clear cart</button>
+	<div class="filters">
+		<input type="text" id="search-input" placeholder="Search store">
+		<select id="category-filter">
+			<option value="All">All</option>
+			<option value="FPS">First-Person-Shooter</option>
+			<option value="RPG">RPG</option>
+			<option value="Sandbox">Sandbox</option>
+			<option value="Open World">Open World</option>
+			<option value="Action RPG">Action RPG</option>
+			<option value="Action">Action</option>
+			<option value="Sports">Sports</option>
+		</select>
+
+		<input type="number" id="min-price-input" placeholder="Minimum price">
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="results-info"></div>
+
+	<!-- Box for Games -->
+	<div id="products-container" class="products-container">
+		<!-- Content for the game box -->
+	</div>
+</main>
+
+<footer>
+	<p>&copy; 2025 AbobaGames. All rights reserved. Made by Aboba. </p>
+</footer>
+
+
+<script src="script.js"></script>
+</body>
+</html>
