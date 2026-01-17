@@ -129,7 +129,7 @@ const products = [
 		id: 7,
 		title: 'Roblox, 1000 Robux',
 		price: 0,
-		category: 'V-currency',
+		category: 'V-Currency',
 		pc_platform: true,
 		ps_platform: true,
 		xbox_platform: true,
@@ -305,6 +305,13 @@ function renderProducts(productsArray){
 productsArray.forEach(function (product){
 	const card = document.createElement("div");
 	card.classList.add("product-card");
+
+// ----------------------------------------------------------------------
+	// card.addEventListener("click", () => {
+    //   window.open(`product.html?id=${product.id}`, "_blank");
+    // });
+// ----------------------------------------------------------------------
+
 
 	// creating HTML for the card
 	card.innerHTML = `
