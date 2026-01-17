@@ -26,9 +26,17 @@ header h1 {
 
 /* Main content */
 main {
+    max-width: 1400px;
     padding: 20px;
-    margin: 10px auto;
+    margin: 0 auto;
 }
+
+
+
+html {
+    font-size: 16px; /* baseline */
+}
+
 
 /* Filters */
 .filters {
@@ -216,7 +224,13 @@ main {
     display: flex;
     align-items: center;
     gap: 20px;
+    font-size: 1rem;
 }
+
+header {
+    font-size: 1rem;
+}
+
 
 .header_index ul {
     margin: 0;
@@ -233,6 +247,7 @@ main {
     text-decoration: none;
     color: white;
     font-weight: 500;
+    font-size: 1rem;
 
     /* animation setup */
     transition: 
@@ -252,33 +267,35 @@ main {
 
 
 .main_index {
-    width: 100%;
-    height: 100vh; /* full viewport height */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    min-height: calc(100vh - 160px); /* header + footer space */
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
-    /* Full-size background */
-    background-image: url("images/back1.jpg"); /* adjust path if needed */
-    background-size: cover;         /* scale image to cover whole area */
-    background-repeat: no-repeat;   /* prevent tiling */
-    background-position: center;    /* center the image */
+    padding-left: 80px;
+    gap: 25px;
+
+    background-image: url("images/back1.webp");
+    background-size: cover;
+    background-position: center;
 }
 
-.main_index h1{
+
+.main_index h1 {
     color: white;
     font-weight: bold;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.35);
     border-radius: 20px;
-    padding: 20px;
-    font-size: 50px;
-    position: absolute;
-    left: 100px;
-    top: 400px;
+    padding: 24px;
+    font-size: 3rem;  
+    max-width: 600px;
 }
 
+
 .main_index b {
-    font-size: 35px;
+    font-size: 2rem;
 }
 
 
@@ -286,17 +303,16 @@ main {
 
 
 .btn-cat {
-    padding: 16px 28px;
+    padding: 16px 30px;
     border-radius: 12px;
     background: #7b1fa2;
     color: white;
     font-weight: bold;
     text-decoration: none;
+    font-size: 1.125rem;
     transition: 0.25s ease;
-    position: absolute;
-    right: 1350px;
-    top: 500px;
 }
+
 
 .btn-cat:hover {
     background: #4a148c;
@@ -310,3 +326,25 @@ main {
     margin: 0;
 }
 
+
+@media (max-width: 768px) {
+    .main_index {
+        padding-left: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .main_index h1 {
+        font-size: 32px;
+    }
+
+    .btn-cat {
+        font-size: 16px;
+    }
+}
+
+
+.add-to-basket-btn,
+#clear-cart-btn {
+    font-size: 1rem;
+}
