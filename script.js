@@ -295,50 +295,57 @@ function savedCart(){
 
 // Updating products for cart
 function updateCartCount() {
+	if (!cartInfo) return;
 	cartInfo.textContent = `Products in cart: ${cart.length}`;
 }
 
 
 
-function renderProducts(productsArray){
-// function to show card for the games
-productsArray.forEach(function (product){
-	const card = document.createElement("div");
-	card.classList.add("product-card");
+function renderProducts(productsArray) {
+    productsContainer.innerHTML = "";
 
+    productsArray.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
 
-	// creating HTML for the card
-	card.innerHTML = `
-		<img src="${product.image}" alt="${product.title}" class="product-image">
+        card.innerHTML = `
+            <img src="${product.image}" class="product-image">
             <h3>${product.title}</h3>
-		<p class="product-category">Category: ${product.category}</p>
-		<p class="product-description">Description: ${product.description}</p>
-		<p class="product-feedback">Feedback: ${product.feedback}</p>
-		<p class="product-price">Price: $${product.price}</p>
-		<button class="add-to-basket-btn">Add to Basket</button>
-	`;
+            <p>${product.description}</p>
+            <p class="product-price">$${product.price}</p>
+            <button class="add-to-basket-btn">Add to Basket</button>
+        `;
 
-	const addButton = card.querySelector(".add-to-basket-btn");
-	addButton.addEventListener("click", function(){
-		cart.push(product.id);
-		savedCart();
-		updateCartCount();
-		console.log(`Numbers of items in cart: ${cart}`);
-	})
+        // CLICK CARD → OPEN PRODUCT PAGE
+        card.addEventListener("click", () => {
+            window.location.href = `product.html?id=${product.id}`;
+        });
 
-	productsContainer.appendChild(card);
-});
+        // CLICK BUTTON → ADD TO CART ONLY
+        const addButton = card.querySelector(".add-to-basket-btn");
+        addButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            cart.push(product.id);
+            savedCart();
+            updateCartCount();
+        });
+
+        productsContainer.appendChild(card);
+    });
 }
 
 
 // clear cart btn homework----------------------------------------
 const clearCartBtn = document.getElementById("clear-cart-btn");
+if (clearCartBtn) {
+    clearCartBtn.addEventListener("click", clearCart);
+}
+
 function clearCart() {
 	cart = [];
 	localStorage.removeItem("cart");
 	updateCartCount();
 }
-clearCartBtn.addEventListener("click", clearCart);
 // ----------------------------------------------------------------
 
 
@@ -384,12 +391,129 @@ function updateResultsInfo(count) {
 	
 loadCart();
 updateCartCount();
-filterAndRender();
-
-searchInput.addEventListener("input", filterAndRender);
-categoryFilter.addEventListener("change", filterAndRender);
-
-minPriceInput.addEventListener("input", filterAndRender);
 
 
+if (productsContainer) {
+	filterAndRender();
+}
 
+
+if (searchInput && categoryFilter && minPriceInput) {
+	searchInput.addEventListener("input", filterAndRender);
+	categoryFilter.addEventListener("change", filterAndRender);
+	minPriceInput.addEventListener("input", filterAndRender);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const productDetails = document.getElementById("product-details");
+    const crumbTitle = document.getElementById("crumb-title");
+
+    if (!productDetails || !crumbTitle) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = Number(params.get("id"));
+    const product = products.find(p => p.id === productId);
+
+    if (!product) {
+        productDetails.innerHTML = "<h2>Product not found</h2>";
+        crumbTitle.textContent = "";
+        return;
+    }
+
+    document.title = `GameNest – ${product.title}`;
+    crumbTitle.textContent = product.title;
+
+    // Platforms badges
+    const platforms = [];
+    if (product.pc_platform) platforms.push("PC");
+    if (product.ps_platform) platforms.push("PlayStation");
+    if (product.xbox_platform) platforms.push("Xbox");
+    const platformsHTML = platforms.map(p => `<span class="badge">${p}</span>`).join(" ");
+
+    // Discount badge (moved below title)
+    const discountHTML = product.discount ? `<div class="discount-badge">Discount!</div>` : "";
+
+    // Age limit
+    const ageHTML = product.age_limit ? `${product.age_limit}+` : "N/A";
+
+    productDetails.innerHTML = `
+        <!-- Left column: Image + Description -->
+        <div class="product-left">
+            <div class="product-gallery">
+                <img src="${product.image}" alt="${product.title}">
+            </div>
+            <div class="description-section">
+                <h3>Description</h3>
+                <p class="description">${product.description}</p>
+            </div>
+        </div>
+
+        <!-- Right column: Info sections + Purchase -->
+        <div class="product-right">
+            <h1>${product.title}</h1>
+            ${discountHTML} <!-- Discount below title -->
+
+            <!-- Platforms Section -->
+            <div class="info-section">
+                <h3>Platforms</h3>
+                <div class="product-meta">
+                    ${platformsHTML || "<span>Not specified</span>"}
+                </div>
+            </div>
+
+            <!-- Game Info Section (Vertical Layout) -->
+            <div class="info-section">
+                <h3>Game Info</h3>
+                <div class="game-info-vertical">
+                    <div><strong>Genre:</strong> ${product.category}</div>
+                    <div><strong>Age Limit:</strong> ${ageHTML}</div>
+                    <div><strong>Release Date:</strong> ${product.release_date}</div>
+                    <div><strong>Region:</strong> ${product.region}</div>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="info-section">
+                <h3>Reviews</h3>
+                <p class="product-feedback"><strong>User Feedback:</strong> ${product.feedback}</p>
+            </div>
+
+            <!-- Purchase box -->
+            <div class="purchase-box">
+                <div class="price">$${product.price.toLocaleString()}</div>
+                <button class="add-to-basket-btn">Add to Basket</button>
+            </div>
+        </div>
+    `;
+
+    // Add to cart button
+    const addButton = productDetails.querySelector(".add-to-basket-btn");
+    addButton.addEventListener("click", () => {
+        cart.push(product.id);
+        savedCart();
+        updateCartCount();
+        alert(`${product.title} added to cart!`);
+    });
+});
