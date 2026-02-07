@@ -1,47 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>GameNest Main Page</title>
+	<title>GameNest - Play More. Pay Less.</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<header class="header_index" id="header_index1">
-	<img src="images/logo.png">
-	<h2>GameNest</h2>
-   		<nav>
-   			<ul>
-            	<li><a href="index.html">Main Page</a></li>
-            	<li><a href="catalog.html">Catalog</a></li>
-            	<li><a href="about.html">About Us</a></li>
-            </ul>
-   		</nav>
+<body class="body_index">
 
-   		<select>
-   			<option>English</option>
-   			<option>Ukrainian</option>
-   		</select>
-
+<!-- Header -->
+<header class="header_index">
+	<div class="header-left">
+		<img src="images/logo.png" alt="GameNest Logo">
+		<h2>GameNest</h2>
+	</div>
+	<nav>
+		<ul>
+			<li><a href="index.html" class="active">Main Page</a></li>
+			<li><a href="catalog.html">Catalog</a></li>
+			<li><a href="about.html">About Us</a></li>
+		</ul>
+	</nav>
+	<div class="header-actions">
+		<button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+		<button id="cart-toggle">
+			<span class="cart-info" id="cart-info">0</span>
+		</button>
+	</div>
 </header>
 
+<!-- Cart Modal -->
+<div class="cart-modal" id="cart-modal">
+	<div class="cart-modal-content">
+		<div class="cart-modal-header">
+			<h2>🛒 Your Cart</h2>
+			<button id="close-cart" aria-label="Close cart">×</button>
+		</div>
+		<div class="cart-modal-body">
+			<div id="empty-cart-msg" style="display: none;">
+				<p>🛒</p>
+				<h3>Your cart is empty</h3>
+				<p>Add some games to get started!</p>
+			</div>
+			<div id="cart-items"></div>
+		</div>
+		<div class="cart-modal-footer">
+			<div class="cart-total-section">
+				<span>Total:</span>
+				<span id="cart-total">$0.00</span>
+			</div>
+			<div class="cart-actions">
+				<button id="clear-cart-btn">Clear Cart</button>
+				<button class="checkout-btn">Checkout</button>
+			</div>
+		</div>
+	</div>
+</div>
 
-
-
+<!-- Main Content -->
 <main class="main_index">
-	<h1>GameNest <br> <b>Play More. Pay Less.</b></h1>
-
-	<a href="catalog.html" class="btn-cat">Our Catalog</a>
-
+	<h1>GameNest <b>Play More. Pay Less.</b></h1>
+	<a href="catalog.html" class="btn-cat">Browse Catalog</a>
+	
+	<!-- Recommended Games Section -->
+	<section class="recommended-section">
+		<h2>⭐ Recommended Games</h2>
+		<div class="recommended-grid" id="recommended-games">
+			<!-- Games will be loaded here by JavaScript -->
+		</div>
+	</section>
 </main>
 
-
-
-
-
-
+<!-- Footer -->
 <footer>
-	<p>&copy; 2026 GameNest. All rights reserved. Made by Aboba. </p>
+	<p>&copy; 2026 GameNest. All rights reserved. Made with 💜 by Aboba</p>
 </footer>
 
 <script src="script.js"></script>

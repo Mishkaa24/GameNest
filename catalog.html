@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,86 +8,145 @@
 </head>
 <body>
 
-<header class="header_index" id="header_catalog">
-	<img src="images/logo.png">
-	<h2>GameNest</h2>
-   		<nav>
-   			<ul>
-            	<li><a href="index.html">Main Page</a></li>
-            	<li><a href="catalog.html">Catalog</a></li>
-            	<li><a href="about.html">About Us</a></li>
-            </ul>
-   		</nav>
-
-   		<select>
-   			<option>English</option>
-   			<option>Ukrainian</option>
-   		</select>
+<!-- Header -->
+<header>
+	<div class="header-left">
+		<img src="images/logo.png" alt="GameNest Logo">
+		<h2>GameNest</h2>
+	</div>
+	<nav>
+		<ul>
+			<li><a href="index.html">Main Page</a></li>
+			<li><a href="catalog.html" class="active">Catalog</a></li>
+			<li><a href="about.html">About Us</a></li>
+		</ul>
+	</nav>
+	<div class="header-actions">
+		<button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+		<button id="cart-toggle">
+			<span class="cart-info" id="cart-info">0</span>
+		</button>
+	</div>
 </header>
 
-<main>
-
-<div class="catalog-title">
-	<h1 class="h1-catlog">GameNest Catalog</h1>
+<!-- Cart Modal -->
+<div class="cart-modal" id="cart-modal">
+	<div class="cart-modal-content">
+		<div class="cart-modal-header">
+			<h2>🛒 Your Cart</h2>
+			<button id="close-cart" aria-label="Close cart">×</button>
+		</div>
+		<div class="cart-modal-body">
+			<div id="empty-cart-msg" style="display: none;">
+				<p>🛒</p>
+				<h3>Your cart is empty</h3>
+				<p>Add some games to get started!</p>
+			</div>
+			<div id="cart-items"></div>
+		</div>
+		<div class="cart-modal-footer">
+			<div class="cart-total-section">
+				<span>Total:</span>
+				<span id="cart-total">$0.00</span>
+			</div>
+			<div class="cart-actions">
+				<button id="clear-cart-btn">Clear Cart</button>
+				<button class="checkout-btn">Checkout</button>
+			</div>
+		</div>
+	</div>
 </div>
-	<div id="cart-info" class="cart-info">Items in cart: 0</div>
-	<button id="clear-cart-btn">Clear cart</button>
-	<div class="filters">
-		<input type="text" id="search-input" placeholder="Search store">
-		<select id="category-filter">
-			<option value="All">All</option>
-			<option value="FPS">First-Person-Shooter</option>
-			<option value="RPG">RPG</option>
-			<option value="Sandbox">Sandbox</option>
-			<option value="Open World">Open World</option>
-			<option value="V-Currency">V-Currency</option>
-			<option value="Action RPG">Action RPG</option>
-			<option value="Action">Action</option>
-			<option value="Sports">Sports</option>
-			<option value="Game Pass">Game Pass</option>
 
-		</select>
+<!-- Main Content -->
+<main>
+	<div class="catalog-container">
+		<!-- LEFT SIDEBAR - FILTERS -->
+		<aside class="filters-sidebar">
+			<h3>Filters</h3>
+			
+			<div class="filter-group">
+				<label for="search-input">🔍 Search</label>
+				<input type="text" id="search-input" placeholder="Search games...">
+			</div>
+			
+			<div class="filter-group">
+				<label for="category-filter">📂 Category</label>
+				<select id="category-filter">
+					<option value="All">All Categories</option>
+					<option value="FPS">First-Person Shooter</option>
+					<option value="RPG">RPG</option>
+					<option value="Sandbox">Sandbox</option>
+					<option value="Open World">Open World</option>
+					<option value="V-Currency">Virtual Currency</option>
+					<option value="Action RPG">Action RPG</option>
+					<option value="Action">Action</option>
+					<option value="Sports">Sports</option>
+					<option value="Game Pass">Game Pass</option>
+				</select>
+			</div>
+			
+			<div class="filter-group">
+				<label for="min-price-input">💰 Minimum Price</label>
+				<input type="number" id="min-price-input" placeholder="$0" min="0">
+			</div>
 
-		<input type="number" id="min-price-input" placeholder="Minimum price">
+			<div class="filter-group">
+				<label for="max-price-input">💰 Maximum Price</label>
+				<input type="number" id="max-price-input" placeholder="No limit" min="0">
+			</div>
+			
+			<div class="filter-group">
+				<label for="platform-filter">🎮 Platform</label>
+				<select id="platform-filter">
+					<option value="all">All Platforms</option>
+					<option value="pc">PC</option>
+					<option value="playstation">PlayStation</option>
+					<option value="xbox">Xbox</option>
+				</select>
+			</div>
+
+			<div class="filter-group">
+				<label>
+					<input type="checkbox" id="discount-filter">
+					Only show discounts
+				</label>
+			</div>
+
+			<div class="filter-group">
+				<label>
+					<input type="checkbox" id="top-filter">
+					Only show top rated
+				</label>
+			</div>
+		</aside>
+		
+		<!-- RIGHT SIDE - PRODUCTS -->
+		<div class="catalog-main">
+			<div class="catalog-header">
+				<div id="results-info">Loading products...</div>
+				<div class="sort-controls">
+					<select id="sort-select">
+						<option value="default">Sort by: Default</option>
+						<option value="price-low">Price: Low to High</option>
+						<option value="price-high">Price: High to Low</option>
+						<option value="name-asc">Name: A-Z</option>
+						<option value="name-desc">Name: Z-A</option>
+						<option value="newest">Newest First</option>
+					</select>
+				</div>
+			</div>
+			
+			<div id="products-container" class="products-container">
+				<!-- Products will be inserted here by JavaScript -->
+			</div>
+		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<div id="results-info"></div>
-
-	<!-- Box for Games -->
-	<div id="products-container" class="products-container">
-		<!-- Content for the game box -->
-	</div>
-
-
-
-
-
-
-
-
-
-
-
 </main>
 
+<!-- Footer -->
 <footer>
-	<p>&copy; 2026 GameNest. All rights reserved. Made by Aboba. </p>
+	<p>&copy; 2026 GameNest. All rights reserved. Made with 💜 by Aboba</p>
 </footer>
-
 
 <script src="script.js"></script>
 </body>

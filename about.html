@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,43 +7,267 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	
-<header class="header_index" id="header_about">
-	<img src="images/logo.png">
-	<h2>GameNest</h2>
-   		<nav>
-   			<ul>
-            	<li><a href="index.html">Main Page</a></li>
-            	<li><a href="catalog.html">Catalog</a></li>
-            	<li><a href="about.html">About Us</a></li>
-            </ul>
-   		</nav>
 
-   		<select>
-   			<option>English</option>
-   			<option>Ukrainian</option>
-   		</select>
+<!-- Header -->
+<header>
+	<div class="header-left">
+		<img src="images/logo.png" alt="GameNest Logo">
+		<h2>GameNest</h2>
+	</div>
+	<nav>
+		<ul>
+			<li><a href="index.html">Main Page</a></li>
+			<li><a href="catalog.html">Catalog</a></li>
+			<li><a href="about.html" class="active">About Us</a></li>
+		</ul>
+	</nav>
+	<div class="header-actions">
+		<button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+		<button id="cart-toggle">
+			<span class="cart-info" id="cart-info">0</span>
+		</button>
+	</div>
 </header>
 
+<!-- Cart Modal -->
+<div class="cart-modal" id="cart-modal">
+	<div class="cart-modal-content">
+		<div class="cart-modal-header">
+			<h2>🛒 Your Cart</h2>
+			<button id="close-cart" aria-label="Close cart">×</button>
+		</div>
+		<div class="cart-modal-body">
+			<div id="empty-cart-msg" style="display: none;">
+				<p>🛒</p>
+				<h3>Your cart is empty</h3>
+				<p>Add some games to get started!</p>
+			</div>
+			<div id="cart-items"></div>
+		</div>
+		<div class="cart-modal-footer">
+			<div class="cart-total-section">
+				<span>Total:</span>
+				<span id="cart-total">$0.00</span>
+			</div>
+			<div class="cart-actions">
+				<button id="clear-cart-btn">Clear Cart</button>
+				<button class="checkout-btn">Checkout</button>
+			</div>
+		</div>
+	</div>
+</div>
 
+<!-- Main Content -->
+<main class="about-main">
+	<!-- Hero Section -->
+	<section class="about-hero">
+		<h1>About GameNest</h1>
+		<p class="hero-subtitle">Your trusted destination for digital gaming</p>
+	</section>
 
+	<!-- Mission Section -->
+	<section class="about-section">
+		<div class="section-header">
+			<h2>🎮 Our Mission</h2>
+		</div>
+		<p class="mission-text">
+			At GameNest, we believe gaming should be accessible to everyone. Our mission is to provide gamers worldwide with instant access to the best games at unbeatable prices. Whether you're a casual player or a hardcore enthusiast, we've got you covered with our vast collection of digital game keys and virtual currencies.
+		</p>
+	</section>
 
+	<!-- Stats Section -->
+	<section class="stats-section">
+		<div class="stat-card">
+			<div class="stat-icon">🎯</div>
+			<div class="stat-number">50,000+</div>
+			<div class="stat-label">Happy Customers</div>
+		</div>
+		<div class="stat-card">
+			<div class="stat-icon">🎮</div>
+			<div class="stat-number">1,000+</div>
+			<div class="stat-label">Games Available</div>
+		</div>
+		<div class="stat-card">
+			<div class="stat-icon">⚡</div>
+			<div class="stat-number">Instant</div>
+			<div class="stat-label">Digital Delivery</div>
+		</div>
+		<div class="stat-card">
+			<div class="stat-icon">🌍</div>
+			<div class="stat-number">Global</div>
+			<div class="stat-label">Worldwide Service</div>
+		</div>
+	</section>
 
+	<!-- Why Choose Us Section -->
+	<section class="about-section">
+		<div class="section-header">
+			<h2>✨ Why Choose GameNest?</h2>
+		</div>
+		<div class="features-grid">
+			<div class="feature-card">
+				<div class="feature-icon">💰</div>
+				<h3>Best Prices</h3>
+				<p>Competitive pricing on all games with regular discounts and special offers.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🔒</div>
+				<h3>Secure & Safe</h3>
+				<p>All transactions are encrypted and protected with industry-standard security.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">⚡</div>
+				<h3>Instant Delivery</h3>
+				<p>Get your game keys immediately after purchase, no waiting required.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🎧</div>
+				<h3>24/7 Support</h3>
+				<p>Our dedicated support team is always ready to help you with any issues.</p>
+			</div>
+		</div>
+	</section>
 
-<main>
-	<h3>UNDER DEVELOPMENT</h3>
-	<img src="images/under-construction.webp">
+	<!-- Contact Section -->
+	<section class="contact-section">
+		<div class="section-header">
+			<h2>📧 Get In Touch</h2>
+			<p class="section-subtitle">Have questions? We'd love to hear from you!</p>
+		</div>
+		
+		<div class="contact-grid">
+			<!-- Contact Info Cards -->
+			<div class="contact-cards">
+				<div class="contact-card">
+					<div class="contact-icon">📧</div>
+					<h3>Email Us</h3>
+					<a href="mailto:support@gamenest.com">support@gamenest.com</a>
+					<a href="mailto:sales@gamenest.com">sales@gamenest.com</a>
+				</div>
+
+				<div class="contact-card">
+					<div class="contact-icon">💬</div>
+					<h3>Live Chat</h3>
+					<p>Available 24/7</p>
+					<button class="contact-btn">Start Chat</button>
+				</div>
+
+				<div class="contact-card">
+					<div class="contact-icon">📱</div>
+					<h3>Social Media</h3>
+					<div class="social-links">
+						<a href="#" class="social-link">Twitter</a>
+						<a href="#" class="social-link">Discord</a>
+						<a href="#" class="social-link">Instagram</a>
+					</div>
+				</div>
+
+				<div class="contact-card">
+					<div class="contact-icon">📍</div>
+					<h3>Address</h3>
+					<p>GameNest LLC</p>
+					<p>123 Gaming Street</p>
+					<p>Digital District, NY 10001</p>
+					<p>United States</p>
+				</div>
+			</div>
+
+			<!-- Contact Form -->
+			<div class="contact-form-container">
+				<h3>Send us a Message</h3>
+				<form class="contact-form" id="contact-form">
+					<div class="form-group">
+						<label for="name">Name *</label>
+						<input type="text" id="name" name="name" required placeholder="Your name">
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email *</label>
+						<input type="email" id="email" name="email" required placeholder="your@email.com">
+					</div>
+
+					<div class="form-group">
+						<label for="subject">Subject *</label>
+						<select id="subject" name="subject" required>
+							<option value="">Select a topic</option>
+							<option value="support">Technical Support</option>
+							<option value="sales">Sales Inquiry</option>
+							<option value="refund">Refund Request</option>
+							<option value="partnership">Partnership</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="message">Message *</label>
+						<textarea id="message" name="message" rows="6" required placeholder="How can we help you?"></textarea>
+					</div>
+
+					<button type="submit" class="submit-btn">Send Message</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Section -->
+	<section class="about-section">
+		<div class="section-header">
+			<h2>❓ Frequently Asked Questions</h2>
+		</div>
+		<div class="faq-container">
+			<div class="faq-item">
+				<h4>How do I receive my game key?</h4>
+				<p>After completing your purchase, you'll receive your game key instantly via email and it will also be available in your account dashboard.</p>
+			</div>
+			<div class="faq-item">
+				<h4>What payment methods do you accept?</h4>
+				<p>We accept all major credit cards, PayPal, cryptocurrency, and various regional payment methods.</p>
+			</div>
+			<div class="faq-item">
+				<h4>Can I get a refund?</h4>
+				<p>Due to the digital nature of our products, refunds are only available if the key hasn't been revealed or activated. Please contact support for assistance.</p>
+			</div>
+			<div class="faq-item">
+				<h4>Are the games region-locked?</h4>
+				<p>Most of our games are worldwide keys, but some may have regional restrictions. Check the product page for specific region information.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="cta-section">
+		<h2>Ready to Start Gaming?</h2>
+		<p>Browse our catalog and find your next adventure</p>
+		<a href="catalog.html" class="btn-cat">Explore Games</a>
+	</section>
 </main>
 
-
-
-
-
-
+<!-- Footer -->
 <footer>
-	<p>&copy; 2026 GameNest. All rights reserved. Made by Aboba. </p>
+	<p>&copy; 2026 GameNest. All rights reserved. Made with 💜 by Aboba</p>
 </footer>
 
 <script src="script.js"></script>
+<script>
+	// Contact form submission handler
+	document.getElementById('contact-form').addEventListener('submit', function(e) {
+		e.preventDefault();
+		
+		// Show success notification
+		const notification = document.createElement('div');
+		notification.className = 'notification show';
+		notification.textContent = '✅ Message sent successfully! We\'ll get back to you soon.';
+		document.body.appendChild(notification);
+		
+		// Reset form
+		this.reset();
+		
+		// Remove notification after 3 seconds
+		setTimeout(() => {
+			notification.classList.remove('show');
+			setTimeout(() => notification.remove(), 300);
+		}, 3000);
+	});
+</script>
 </body>
 </html>
